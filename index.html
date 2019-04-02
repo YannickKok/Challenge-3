@@ -1,18 +1,55 @@
-<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		
-		<link href="style.css" type="text/css" rel="stylesheet" />
-		<script type="text/javascript">
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, 
+                  width=device-width" />
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+</head>
+
+<body>
+    <div style="width: 640px; height: 480px" id="mapContainer"></div>
+    <script type="text/javascript" charset="utf-8">
+        //Initialize the Platform object:
+        var platform = new H.service.Platform({
+            'app_id': 'Jrtnsv11BooZblaQYRIu',
+            'app_code': 'vFJdWKDeX_eEUuR29UhpHQ'
+        });
+
+        // Get the default map types from the Platform object:
+        var defaultLayers = platform.createDefaultLayers();
+
+        // Instantiate the map:
+        var map = new H.Map(
+            document.getElementById('mapContainer'),
+            defaultLayers.terrain.map,        //Terrain kun je hier veranderen voor normal (voor de standaard map view) of sattelite (voor satteliet view). Dit is de stijl van de kaart bij het inladen.
+            {
+                zoom: 3,                        //Zoomniveau, waarbij 1 het verst is uitgezoomed, en 100 het verst is ingezoomed.
+                center: { lng: 263.4, lat: 52.51 }  //Coordinaten van het beginscherm. Staat nu op Noord-Amerika. Aangezien SpaceX een Amerikaans bedrijf is, is dit een logisch beginpunt.
+            });
 
 
-		</script>
-	</head>
-	<body>
-            <h1>Testing!
-                <br><br>Attention please!
-            
-            </h1>
-	</body>
+        
+
+        // Create the default UI:
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+
+        // Enable the event system on the map instance:
+        var mapEvents = new H.mapevents.MapEvents(map);
+
+        // Add event listeners:
+        map.addEventListener('tap', function (evt) {
+            // Log 'tap' and 'mouse' events:
+            console.log(evt.type, evt.currentPointer.type);
+        });
+
+        // Instantiate the default behavior, providing the mapEvents object: 
+        var behavior = new H.mapevents.Behavior(mapEvents);
+    </script>
+</body>
+
 </html>
