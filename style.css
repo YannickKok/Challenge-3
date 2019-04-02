@@ -1,4 +1,227 @@
-/*
-CSSFILE
-*/
+* {
+    box-sizing: border-box;
+  
+  }
+  
+  body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
+  max-width: 1920px;
+  background-image: url(images/background.jpg);
+  background-color: #676767;
+  }
+  
+  .container {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row wrap;
+  
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
+  header {
+    max-height:300px;
+    display: block;
+    width:100%;
+    
+
+}
+
+  header img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    width: 96%;
+    max-width: 481px;
+    max-height: 130px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    opacity: 0.75;
+
+
+}
+
+#weatherBox {
+
+    width: 200px;
+    height: 500px;
+	padding: 1px;
+    text-align: center;
+    color: white;
+    border-radius: 5px;
+    text-shadow: 2px 2px black;
+    opacity: .95;
+    
+
+}
+
+#weather {
+
+
+	padding: 6px;
+    text-align: center;
+    color: white;
+}
+
+.hidden {
+	display: none;
+}
+
+ #mapContainer {
+     max-height: 500px;
+     min-width: 300px;
+
+
+     padding-left:  1px;
+     padding-right: 0px;
+     padding-top: 1px;
+     padding-bottom: 1px;
+     border-radius: 5px;
+     color: black;
+ } 
+
+ .item {
+    width: 96% !important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    margin-top:20px;
+    margin-bottom: 10px;
+
+
+
+}
+  
+  
+  /************Small**************/
+  @media only screen and (min-width: 300px) and (max-width: 649px) {
+    .container {
+          max-width: 1920px;
+          margin: 0 auto;
+          flex-flow: row wrap;
+          display:flex;
+      }
+  
+    .item {
+
+      width: 96%!important;
+      height: 100%;
+      margin-left: auto!important;
+      margin-right: auto!important;
+      margin-bottom: 20px;
+      float: left!important;
+      padding: 14px;
+
+  }
+  
+  h1 {
+    font-size: 27px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color:rgb(240, 240, 240);
+    text-shadow: 2px 2px black;
+    }
+  }
+  
+  /************Mid**************/
+  @media only screen and (min-width: 650px) and (max-width: 999px) {
+  
+    .container {
+          max-width: 1920px;
+          margin: 0 auto;
+          flex-flow: row wrap;
+          display:flex;
+      }
+  
+    .item {
+
+      width: 49%!important;
+      height: 100%;
+      margin-left: auto!important;
+      margin-right: auto!important;
+      margin-bottom: 20px;
+      float: left!important;
+      padding: 14px;
+
+  }
+  
+  h1 {
+    font-size: 27px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color:rgb(240, 240, 240);
+    text-shadow: 2px 2px black;
+    }
+  
+  }
+  /***********Large*************/
+  @media only screen and (min-width: 1000px) and (max-width: 1439px){
+    .container {
+          max-width: 1920px;
+          margin: 0 auto;
+          flex-flow: row wrap;
+          display:flex;
+      }
+  
+    .item {
+
+      width: 32%!important;
+      height: 100%;
+      margin-left: auto!important;
+      margin-right: auto!important;
+      float: left!important;
+      padding: 14px;
+
+  }
+  h1 {
+    font-size: 25px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color:rgb(240, 240, 240);
+    text-shadow: 2px 2px black;
+    }
+    
+  }
+  /************XL**************/
+  @media only screen and (min-width: 1440px) {
+  
+    .container {
+          max-width: 1920px;
+          margin: 0 auto;
+          flex-flow: row wrap;
+          display:flex;
+      }
+  
+    .item {
+      width: 23.2%!important;
+      height: 100%;
+      margin-left: auto!important;
+      margin-right: auto!important;
+      float: left!important;
+
+  }
+  
+  h1 {
+    font-size: 27px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color:rgb(240, 240, 240);
+    text-shadow: 2px 2px black;
+    }
+  
+  }
