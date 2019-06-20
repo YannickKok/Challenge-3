@@ -1,16 +1,19 @@
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta name="viewport" content="initial-scale=1.0, 
                   width=device-width" />
-    <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.0/mapsjs-pano.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.0/mapsjs-places.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+                  <title>Challenge 3</title>
+                  <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+                  <style>
+                    .map {
+                      height: 65%;
+                      width: 65%;
+                    }
+                  </style>
+                  <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
@@ -22,74 +25,35 @@
         </header>
 
 
-        <div id="mapContainer" class="item"></div>
-        <script type="text/javascript" charset="utf-8">
-            //Initialize the Platform object:
-            var platform = new H.service.Platform({
-                'app_id': 'Jrtnsv11BooZblaQYRIu',
-                'app_code': 'vFJdWKDeX_eEUuR29UhpHQ',
-                'useHTTPS': true
-
-            });
-
-            // Get the default map types from the Platform object:
-            var defaultLayers = platform.createDefaultLayers();
-
-            // Instantiate the map:
-            var map = new H.Map(
-                document.getElementById('mapContainer'),
-                defaultLayers.terrain.map,        //Terrain kun je hier veranderen voor normal (voor de standaard map view) of sattelite (voor satteliet view). Dit is de stijl van de kaart bij het inladen.
-                {
-                    zoom: 3,                        //Zoomniveau, waarbij 1 het verst is uitgezoomed, en 100 het verst is ingezoomed.
-                    center: { lng: 263.4, lat: 52.51 }  //Coordinaten van het beginscherm. Staat nu op Noord-Amerika. Aangezien SpaceX een Amerikaans bedrijf is, is dit een logisch beginpunt.
-                });
-
-            // Create the default UI:
-            var ui = H.ui.UI.createDefault(map, defaultLayers);
-
-            // Enable the event system on the map instance:
-            var mapEvents = new H.mapevents.MapEvents(map);
-
-            // Add event listeners:
-            map.addEventListener('tap', function (evt) {
-                // Log 'tap' and 'mouse' events:
-                console.log(evt.type, evt.currentPointer.type);
-            });
-
-            // Instantiate the default behavior, providing the mapEvents object: 
-            var behavior = new H.mapevents.Behavior(mapEvents);
-
-
+        <div id="map" class="map"></div>
+        <script type="text/javascript">
+          var map = new ol.Map({
+            target: 'map',
+            layers: [
+              new ol.layer.Tile({
+                source: new ol.source.OSM()
+              })
+            ],
+            view: new ol.View({
+              center: ol.proj.fromLonLat([267.41, 38.82]),
+              zoom: 4
+            })
+          });
         </script>
 
-        <script type="text/javascript" charset="utf-8">
-
-            // Configure panorama with platform credentials:
-            platform.configure(H.map.render.panorama.RenderEngine)
-
-            // Assuming that platform was instantiated, get default map layers:
-            var maptypes = platform.createDefaultLayers()
-
-            // Create the StreetLevel UI element:
-            var ui = new H.ui.UI(map, {
-                panorama: {
-                    // Provide panorama coverage layer:
-                    mapTypes: maptypes
-                }
-            });
-        </script>
 
 
         <div id="weatherBox" class="item">
             
-                <h1>Weather API</h1>
+                <h1>Landing Data API</h1>
                 <article id="weather"></article>
                 <form>
 
-                    <legend>Get current weather</legend>
-                    <label for="city">City/Town:</label>
+                    
+                    <label for="city">Location:</label>
                     <input type="text" name="city" id="city" />
-                    <input type="button" id="getWeather" value="Get current weather" />
+                    
+                    <input type="button" id="getWeather" value="Get landing data" />
 
                 </form>
             
@@ -97,39 +61,6 @@
 
         </div>
 
-        <div id="weatherBox" class="item">
-                
-                    <h1>Coordinates API</h1>
-                    <article id="weather"></article>
-                    <form>
-    
-                        <legend>Get coordinates</legend>
-                        <label for="city">City/Town:</label>
-                        <input type="text" name="city" id="city" />
-                        <input type="button" id="getCoordinates" value="Get coordinates" />
-    
-                    </form>
-                
-                <script src="scripts/main.js"></script>
-    
-            </div>
-
-            <div id="weatherBox" class="item">
-                    
-                        <h1>Elevation API</h1>
-                        <article id="weather"></article>
-                        <form>
-        
-                            <legend>Get elevation</legend>
-                            <label for="city">City/Town:</label>
-                            <input type="text" name="city" id="city" />
-                            <input type="button" id="getElevation" value="Get elevation" />
-        
-                        </form>
-                    
-                    <script src="scripts/main.js"></script>
-        
-                </div>
     </div>
 
 </body>
